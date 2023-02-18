@@ -12,8 +12,8 @@ const Main = () => {
         url: 'https://yahoo-weather5.p.rapidapi.com/weather',
         params: {location: {city}, format: 'json', u: 'f'},
         headers: {
-          'X-RapidAPI-Key': 'ecde1f53fdmsh0a4a47c7b7c1a79p157826jsn0b931d4d512c',
-          'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+          .env.X-RapidAPI-Key,
+          .env.X-RapidAPI-Host
         }
       };
 
