@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
+
 const Main = () => {
+  const handleSubmit = (event) => {
+     event.preventDefault();
+     console.log(event.target[0].value);
+  };
   const [weather, setWeather] = useState();
   const [city, setCity] = useState();
 
@@ -10,27 +15,31 @@ const Main = () => {
       const options = {
         method: 'GET',
         url: 'https://yahoo-weather5.p.rapidapi.com/weather',
-        params: {location: {city}, format: 'json', u: 'f'},
+        params: {location: { city }, format: 'json', u: 'c'},
         headers: {
-          .env.X-RapidAPI-Key,
-          .env.X-RapidAPI-Host
+           "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
+           "X-RapidAPI-Host": process.env.REACT_APP_API_HOST
         }
       };
 
-      axios.request(options).then(function (response) {
-        console.log(response.data);
-      }).catch(function (error) {
-        console.error(error);
-      });
 
-      const reponse = await axios.get("");
-      setQuote(reponse.data[random]);
+      // .then(function (response) {
+
+      // }).catch(function (error) {
+      //   console.error(error);
+      // });
+
+      const response = await axios.request(options);
+      console.log(response.data);
+      // setQuote(response.data[random]);
+
+
     };
     fetchWeather();
   }, []);
   return (
     <div>
-      <form>
+      <form onSubmit = {(event) => handleSubmit(event)}>
         <input type="text" id="searchInput" placeholder='saisissez une ville...'
         />
         <input type="button"  value="Search" id="searchInput"/>
